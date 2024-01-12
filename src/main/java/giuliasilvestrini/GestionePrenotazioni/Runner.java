@@ -72,6 +72,8 @@ public class Runner implements CommandLineRunner {
 
         Random random = new Random();
 
+        //stesso tipo OpenSpace essendo stessa postazione.
+
         Prenotazione prenotazione1 = new Prenotazione(LocalDate.of(random.nextInt(2000, 2010), random.nextInt(1, 12), random.nextInt(1, 28)), user1, postazione1);
         Prenotazione prenotazione2 = new Prenotazione(LocalDate.of(random.nextInt(2000, 2010), random.nextInt(1, 12), random.nextInt(1, 28)), user2, postazione1);
         prenotazioneService.save(prenotazione1);

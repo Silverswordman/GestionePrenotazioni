@@ -13,5 +13,5 @@ public class PrenotazioneService {
 
     public void save(Prenotazione prenotazione) {
         prenotazioneDAO.save(prenotazione);
-        System.out.println("prenotazione salvata");
+        System.out.println("prenotazione di tipo " + prenotazione.getPostazione().getTipoPostazione() + " salvata");
     }}
