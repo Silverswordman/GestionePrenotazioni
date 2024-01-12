@@ -8,6 +8,7 @@ import java.time.LocalDate;
 
 @Entity
 @Getter
+
 @NoArgsConstructor
 public class Prenotazione {
 
@@ -32,4 +33,10 @@ public class Prenotazione {
         this.user = user;
         this.postazione = postazione;
     }
+
+
+    // setter per la postazione in prenot
+    public void setPostazione(Postazione postazione) {
+    }
 }
+

@@ -1,11 +1,14 @@
 package giuliasilvestrini.GestionePrenotazioni.entities;
 
+
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -33,7 +36,13 @@ public class Postazione {
     private Edificio edificio;
 
     @OneToMany(mappedBy = "postazione", cascade = CascadeType.ALL)
-    private List<Prenotazione> prenotazioneList;
+    private List<Prenotazione> prenotazioneList = new ArrayList<>();
+
+
+    public void addPrenotazione(Prenotazione prenotazione) {
+        prenotazioneList.add(prenotazione);
+        prenotazione.setPostazione(this);
+    }
 
     public Postazione(TipoPostazione tipoPostazione, String description, int maxSeats, boolean isFree, Edificio edificio) {
         this.tipoPostazione = tipoPostazione;
@@ -41,6 +50,8 @@ public class Postazione {
         this.maxSeats = maxSeats;
         this.isFree = isFree;
         this.edificio = edificio;
+        this.prenotazioneList = new ArrayList<>();
+
     }
 
     @Override
