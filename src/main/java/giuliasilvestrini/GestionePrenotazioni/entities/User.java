@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,7 +20,8 @@ public class User {
     private String completeName;
     private String mail;
 
-
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Prenotazione> prenotazioneList;
 
     public User(String username, String completeName, String mail) {
         this.username = username;
@@ -34,6 +35,8 @@ public class User {
         return "User{" +
                 "username='" + username + '\'' +
                 ", completeName='" + completeName + '\'' +
-                ", mail='" + mail + '\'';
+                ", mail='" + mail + '\'' +
+                ", prenotazioneList=" + prenotazioneList +
+                '}';
     }
 }

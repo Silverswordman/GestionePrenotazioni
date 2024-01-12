@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 
 @Entity
@@ -25,13 +28,19 @@ public class Postazione {
     private int maxSeats;
     private boolean isFree;
 
+    @ManyToOne
+    @JoinColumn(name = "edificio_id")
+    private Edificio edificio;
 
+    @OneToMany(mappedBy = "postazione", cascade = CascadeType.ALL)
+    private List<Prenotazione> prenotazioneList;
 
-    public Postazione(TipoPostazione tipoPostazione, String description, int maxSeats, boolean isFree) {
+    public Postazione(TipoPostazione tipoPostazione, String description, int maxSeats, boolean isFree, Edificio edificio) {
         this.tipoPostazione = tipoPostazione;
         this.description = description;
         this.maxSeats = maxSeats;
         this.isFree = isFree;
+        this.edificio = edificio;
     }
 
     @Override

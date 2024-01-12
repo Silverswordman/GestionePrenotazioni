@@ -2,11 +2,13 @@ package giuliasilvestrini.GestionePrenotazioni.entities;
 
 
 
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 
 @Entity
 @Getter
@@ -21,6 +23,8 @@ public class Edificio {
     private String address;
     private String city;
 
+    @OneToMany(mappedBy = "edificio", cascade = CascadeType.ALL)
+    private List<Postazione> postazioneList;
 
 
     public Edificio(String name, String address, String city) {
@@ -34,7 +38,8 @@ public class Edificio {
         return "Edificio{" +
                 "name='" + name + '\'' +
                 ", address='" + address + '\'' +
-                ", city='" + city + '\''
-              ;
+                ", city='" + city + '\'' +
+                ", postazioneList=" + postazioneList +
+                '}';
     }
 }
